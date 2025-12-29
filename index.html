@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy - E-Commerce</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    // Initialize EmailJS with your Public Key
+    (function() {
+        emailjs.init("RldZhQWqtHqo4iUcd"); // Get this from EmailJS dashboard
+    })();
+</script>
+</script>
+</head>
+<body>
+    <script>
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+        window.location.href = "login.html";
+    }
+</script>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-store"></i> ShopEasy.alt
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search products...">
+            <button id="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="nav-icons">
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <!-- Category Dropdown -->
+            <div class="dropdown">
+                <button class="nav-link"><i class="fas fa-list"></i> Categories <i class="fas fa-chevron-down"></i></button>
+                <div class="dropdown-content" id="category-dropdown">
+                    <!-- Categories will be loaded by JavaScript -->
+                </div>
+            </div>
+            <div class="dropdown">
+              <button class="nav-link" id="userDisplay">
+                <i class="fas fa-user"></i> Hi, User <i class="fas fa-chevron-down"></i>
+            </button>
+             <div class="dropdown-content">
+                <a href="#" id="logoutBtn">🚪 Logout</a>
+            </div>
+        </div>
+            <a href="#" class="nav-link cart-icon">
+                <i class="fas fa-shopping-cart"></i> Cart
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Category Filter -->
+        <div class="category-filter" id="category-filter">
+            <!-- Categories will be loaded here -->
+        </div>
+        
+        <h1>Our Products</h1>
+        <p class="product-count" id="product-count">Loading products...</p>
+        
+        <!-- Products Grid -->
+        <div class="products-grid" id="products-container">
+            <!-- Products will be loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content cart-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-shopping-cart"></i> Your Shopping Cart</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be added here -->
+                    <p class="empty-cart">Your cart is empty</p>
+                </div>
+                <div class="cart-total-section">
+                    <div class="cart-summary">
+                        <div class="summary-item">
+                            <span>Subtotal:</span>
+                            <span>₱<span id="cart-subtotal">0.00</span></span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Shipping:</span>
+                            <span>₱<span id="shipping-fee">50.00</span></span>
+                        </div>
+                        <div class="summary-item total">
+                            <strong>Total:</strong>
+                            <strong>₱<span id="cart-total">50.00</span></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary close-modal-btn">Continue Shopping</button>
+                <button class="btn btn-primary checkout-btn" disabled>Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content checkout-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-shipping-fast"></i> Checkout</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Checkout Steps -->
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">1. Shipping</div>
+                    <div class="step" data-step="2">2. Payment</div>
+                    <div class="step" data-step="3">3. Confirm</div>
+                </div>
+
+                <!-- Step 1: Shipping Information -->
+                <div class="checkout-step active" id="step-1">
+                    <h3><i class="fas fa-map-marker-alt"></i> Shipping Address</h3>
+                    <form id="shipping-form">
+                        <div class="form-group">
+                            <label for="full-name">Full Name *</label>
+                            <input type="text" id="full-name" required placeholder="Juan Dela Cruz">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" required placeholder="09123456789">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" required placeholder="juan@example.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Complete Address *</label>
+                            <textarea id="address" rows="3" required placeholder="House #, Street, Barangay, City, Province"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" required placeholder="Cebu City">
+                            </div>
+                            <div class="form-group">
+                                <label for="province">Province *</label>
+                                <input type="text" id="province" required placeholder="Cebu">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="zip">ZIP Code *</label>
+                                <input type="text" id="zip" required placeholder="6000">
+                            </div>
+                            <div class="form-group">
+                                <label for="landmark">Landmark (Optional)</label>
+                                <input type="text" id="landmark" placeholder="Near SM City">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Shipping Method</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="shipping" value="standard" checked>
+                                    <span class="radio-text">
+                                        <strong>Standard Delivery</strong>
+                                        <small>3-5 business days - ₱50</small>
+                                    </span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="shipping" value="express">
+                                    <span class="radio-text">
+                                        <strong>Express Delivery</strong>
+                                        <small>1-2 business days - ₱150</small>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 2: Payment Method -->
+                <div class="checkout-step" id="step-2">
+                    <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method selected" data-method="cod">
+                            <div class="payment-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="payment-details">
+                                <h4>Cash on Delivery (COD)</h4>
+                                <p>Pay when you receive your order</p>
+                            </div>
+                            <div class="payment-check">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+
+                        <div class="payment-method" data-method="gcash">
+                            <div class="payment-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="payment-details">
+                                <h4>GCash</h4>
+                                <p>Pay using your GCash account</p>
+                            </div>
+                            <div class="payment-check">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+
+                        <div class="payment-method" data-method="maya">
+                            <div class="payment-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <div class="payment-details">
+                                <h4>Maya</h4>
+                                <p>Pay using Maya wallet</p>
+                            </div>
+                            <div class="payment-check">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+
+                        <div class="payment-method" data-method="bank">
+                            <div class="payment-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="payment-details">
+                                <h4>Bank Transfer</h4>
+                                <p>BPI, BDO, Metrobank, etc.</p>
+                            </div>
+                            <div class="payment-check">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+
+                        <div class="payment-method" data-method="card">
+                            <div class="payment-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="payment-details">
+                                <h4>Credit/Debit Card</h4>
+                                <p>Visa, Mastercard, JCB</p>
+                            </div>
+                            <div class="payment-check">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Instructions (will show based on selection) -->
+                    <div class="payment-instructions" id="payment-instructions">
+                        <div class="instructions cod-instructions">
+                            <h4><i class="fas fa-info-circle"></i> Cash on Delivery Instructions</h4>
+                            <p>Please prepare the exact amount when the delivery arrives. Our rider will contact you before delivery.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Order Summary -->
+                <div class="checkout-step" id="step-3">
+                    <h3><i class="fas fa-clipboard-check"></i> Order Summary</h3>
+                    
+                    <div class="order-summary">
+                        <div class="summary-section">
+                            <h4><i class="fas fa-shipping-fast"></i> Shipping Details</h4>
+                            <div id="shipping-summary">
+                                <!-- Shipping details will be shown here -->
+                            </div>
+                        </div>
+
+                        <div class="summary-section">
+                            <h4><i class="fas fa-credit-card"></i> Payment Method</h4>
+                            <div id="payment-summary">
+                                <!-- Payment details will be shown here -->
+                            </div>
+                        </div>
+
+                        <div class="summary-section">
+                            <h4><i class="fas fa-shopping-bag"></i> Order Items</h4>
+                            <div class="order-items" id="order-items-summary">
+                                <!-- Order items will be shown here -->
+                            </div>
+                        </div>
+
+                        <div class="summary-section total-section">
+                            <div class="summary-item">
+                                <span>Subtotal:</span>
+                                <span>₱<span id="summary-subtotal">0.00</span></span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Shipping:</span>
+                                <span>₱<span id="summary-shipping">50.00</span></span>
+                            </div>
+                            <div class="summary-item total">
+                                <strong>Total Amount:</strong>
+                                <strong>₱<span id="summary-total">50.00</span></strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terms-agreement">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agree-terms">
+                            <span>I agree to the <a href="#">Terms and Conditions</a> and understand that this order cannot be cancelled once placed.</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="prev-step">Previous</button>
+                <button class="btn btn-primary" id="next-step">Next Step</button>
+                <button class="btn btn-success" id="place-order" disabled>Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Thank you for your order. Your order number is <strong id="order-number">#000001</strong></p>
+            <p>We will send you an email confirmation shortly.</p>
+            <div class="success-details">
+                <p><i class="fas fa-shipping-fast"></i> Estimated Delivery: <span id="delivery-date">3-5 business days</span></p>
+                <p><i class="fas fa-money-bill-wave"></i> Payment Method: <span id="payment-method-display">Cash on Delivery</span></p>
+            </div>
+            <div class="success-actions">
+                <button class="btn btn-primary" id="continue-shopping">Continue Shopping</button>
+                <button class="btn btn-secondary" id="view-orders">View Orders</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="orders-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>My Orders</h2>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body" id="ordersList">
+            <!-- Orders here -->
+        </div>
+    </div>
+</div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

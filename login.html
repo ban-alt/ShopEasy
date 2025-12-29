@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ShopEasy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-body">
+    
+    <!-- Animated Background -->
+    <div class="login-background">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <div class="login-container">
+        <!-- Logo Section -->
+        <div class="login-logo">
+            <i class="fas fa-store"></i>
+            <h1>ShopEasy</h1>
+            <p class="login-tagline">Your One-Stop Online Shop</p>
+        </div>
+
+        <!-- Form Section -->
+        <div class="login-form-wrapper">
+            <h2 id="formTitle">Welcome Back</h2>
+            <p class="form-subtitle">Please login to continue</p>
+
+            <form id="authForm">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="userEmail" placeholder="Email Address" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+
+                <!-- Register only -->
+                <div class="input-group" id="confirmPasswordGroup" style="display:none;">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password">
+                </div>
+
+                <button type="submit" id="submitBtn" class="login-btn">
+                    <span id="btnText">Login</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <p id="errorMsg" class="error-message"></p>
+            </form>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <p class="switch-text">
+                <span id="switchText">Don't have an account?</span>
+                <a href="#" id="switchBtn" class="switch-link">Create Account</a>
+            </p>
+        </div>
+
+        <!-- Features Section -->
+        <div class="login-features">
+            <div class="feature-item">
+                <i class="fas fa-shipping-fast"></i>
+                <span>Fast Delivery</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Secure Payment</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-headset"></i>
+                <span>24/7 Support</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-gift"></i>
+                <span>Gift Cards</span>
+            </div>
+        </div>
+        <div class="login-footer">
+            &copy; 2026 ShopEasy. All rights reserved.
+            <span> | Developed by Ban</span>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

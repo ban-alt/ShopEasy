@@ -1,56 +1,113 @@
 const products = [
-   {id: 1, name: "Wireless Bluetooth Headphones", price: 2499, originalPrice: 2999, description: "Noise cancelling headphones with 30hr battery", category: "Electronics", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400", rating: 4.5, discount: 17},
-    {id: 2, name: "Smart Watch Pro", price: 3999, originalPrice: 4999, description: "Fitness tracker with heart rate & GPS", category: "Electronics", image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400", rating: 4.3, discount: 20},
-    {id: 3, name: "Bluetooth Speaker", price: 1599, description: "Portable speaker with 12-hour battery", category: "Electronics", image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400", rating: 4.2},
-    {id: 4, name: "Gaming Mouse", price: 1299, description: "RGB gaming mouse with 6 buttons", category: "Electronics", image: "https://images.unsplash.com/photo-1563297007-0686b7003af7?w=400", rating: 4.4},
-    {id: 5, name: "USB-C Hub", price: 899, description: "7-in-1 USB-C hub for laptops", category: "Electronics", image: "https://images.unsplash.com/photo-1625948515291-69613efd103f?w=400", rating: 4.1},
-{id: 6, name: "Wireless Charger", price: 799, description: "15W fast wireless charger", category: "Electronics", image: "https://images.unsplash.com/photo-1594830098162-7c6e897b75fe?w=400&h=300&fit=crop&crop=center", rating: 4.0},    {id: 9, name: "Action Camera", price: 6899, description: "4K waterproof action camera", category: "Electronics", image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400", rating: 4.4},
-    {id: 10, name: "Portable SSD 1TB", price: 4599, description: "High-speed portable solid state drive", category: "Electronics", image: "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=400", rating: 4.7},
-    {id: 11, name: "Denim Jacket", price: 1899, description: "Classic denim jacket for all seasons", category: "Clothing", image: "https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?w=400", rating: 4.3},
-    {id: 12, name: "Running Shoes", price: 2899, originalPrice: 3499, description: "Lightweight running shoes with cushion", category: "Clothing", image: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=400", rating: 4.6, discount: 17},
-    {id: 13, name: "Cotton T-Shirt Pack", price: 999, description: "Pack of 3 basic cotton t-shirts", category: "Clothing", image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400", rating: 4.2},
-    {id: 14, name: "Winter Coat", price: 3499, description: "Waterproof winter coat with hood", category: "Clothing", image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400", rating: 4.4},
-    {id: 15, name: "Yoga Pants", price: 1299, description: "Stretchy yoga pants for workouts", category: "Clothing", image: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400", rating: 4.5},
-    {id: 16, name: "Formal Shirt", price: 1499, description: "Premium cotton formal shirt", category: "Clothing", image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400", rating: 4.3},
-    {id: 17, name: "Summer Dress", price: 1899, description: "Floral print summer dress", category: "Clothing", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400", rating: 4.7},
-    {id: 18, name: "Backpack", price: 1299, description: "Water-resistant backpack", category: "Clothing", image: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=400", rating: 4.4},
-    {id: 19, name: "Coffee Maker", price: 1899, description: "Automatic coffee maker", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=400", rating: 4.5},
-    {id: 20, name: "Air Fryer", price: 2999, originalPrice: 3999, description: "Digital air fryer 5L capacity", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1585515320310-259814833e62?w=400", rating: 4.6, discount: 25},
-    {id: 21, name: "Desk Lamp", price: 799, description: "LED desk lamp adjustable", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400", rating: 4.2},
-    {id: 22, name: "Non-stick Pan Set", price: 1499, description: "3-piece non-stick pan set", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=400", rating: 4.4},
-    {id: 23, name: "Electric Kettle", price: 899, description: "1.5L electric kettle", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1632215933905-8f0c13c24718?w=400", rating: 4.3},
-    {id: 24, name: "Vacuum Cleaner", price: 3899, description: "Cordless vacuum cleaner", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=400", rating: 4.5},
-    {id: 25, name: "Blender", price: 1599, description: "High-speed blender 1000W", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400", rating: 4.4},
-    {id: 26, name: "Rice Cooker", price: 1299, description: "10-cup rice cooker", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=400", rating: 4.6},
-    {id: 27, name: "Web Development Guide", price: 899, description: "Complete web development handbook", category: "Books", image: "https://images.unsplash.com/photo-1510519138101-570d1dca3d66?w=400", rating: 4.7},
-    {id: 28, name: "Cookbook Collection", price: 1299, description: "500+ recipes from around the world", category: "Books", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400", rating: 4.5},
-    {id: 29, name: "Business Strategy", price: 699, description: "Best-selling business strategy book", category: "Books", image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400", rating: 4.4},
-    {id: 30, name: "Science Fiction Novel", price: 499, description: "Award-winning sci-fi novel", category: "Books", image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400", rating: 4.8},
-    {id: 31, name: "Self-Help Guide", price: 599, description: "Personal development guide", category: "Books", image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400", rating: 4.3},
-    {id: 32, name: "Children's Storybook", price: 399, description: "Colorful illustrated storybook", category: "Books", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400", rating: 4.6},
-    {id: 33, name: "Yoga Mat", price: 699, description: "Non-slip yoga mat", category: "Sports", image: "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?w=400", rating: 4.4},
-    {id: 34, name: "Dumbbell Set", price: 1899, description: "Adjustable dumbbell set 20kg", category: "Sports", image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400", rating: 4.5},
-    {id: 35, name: "Basketball", price: 899, description: "Official size basketball", category: "Sports", image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=400", rating: 4.3},
-    {id: 36, name: "Running Shorts", price: 799, description: "Breathable running shorts", category: "Sports", image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400", rating: 4.2},
-    {id: 37, name: "Tennis Racket", price: 2499, description: "Professional tennis racket", category: "Sports", image: "https://images.unsplash.com/photo-1622163642998-1ea32b0bbc67?w=400", rating: 4.6},
-    {id: 38, name: "Swimming Goggles", price: 499, description: "Anti-fog swimming goggles", category: "Sports", image: "https://images.unsplash.com/photo-1600965962102-9d260a71890d?w=400", rating: 4.1},
-    {id: 39, name: "Skincare Set", price: 1599, description: "Complete skincare routine set", category: "Beauty", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400", rating: 4.7},
-    {id: 40, name: "Hair Dryer", price: 1299, description: "Ionic hair dryer 2000W", category: "Beauty", image: "https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=400", rating: 4.4},
-    {id: 41, name: "Perfume Collection", price: 2299, description: "3-piece perfume set", category: "Beauty", image: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400", rating: 4.6},
-    {id: 42, name: "Makeup Brush Set", price: 899, description: "12-piece makeup brush set", category: "Beauty", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400", rating: 4.3},
-    {id: 43, name: "Sunscreen Lotion", price: 499, description: "SPF 50+ sunscreen lotion", category: "Beauty", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400", rating: 4.5},
-    {id: 44, name: "Face Mask Pack", price: 299, description: "Sheet mask pack 10 pieces", category: "Beauty", image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400", rating: 4.2}
-  ];
+    {id: 1, name: "Wireless Bluetooth Headphones", price: 2499, originalPrice: 2999, description: "Noise cancelling headphones with 30hr battery", category: "Electronics", image: "images/products/headphone1.jpg", rating: 4.5, discount: 17},
+    {id: 2, name: "Smart Watch Pro", price: 3999, originalPrice: 4999, description: "Fitness tracker with heart rate & GPS", category: "Electronics", image: "images/products/smartpro.jpg", rating: 4.3, discount: 20},
+    {id: 3, name: "Bluetooth Speaker", price: 1599, description: "Portable speaker with 12-hour battery", category: "Electronics", image: "images/products/pexels-cottonbro-6322724.jpg", rating: 4.2},
+    {id: 4, name: "Gaming Mouse", price: 1299, description: "RGB gaming mouse with 6 buttons", category: "Electronics", image: "images/products/pexels-tima-miroshnichenko-7047612.jpg", rating: 4.4},
+    {id: 5, name: "USB-C Hub", price: 899, description: "7-in-1 USB-C hub for laptops", category: "Electronics", image: "images/products/pexels-rann-vijay-677553-7742583.jpg", rating: 4.1},
+    {id: 6, name: "Wireless Charger", price: 799, description: "15W fast wireless charger", category: "Electronics", image: "images/products/pexels-rann-vijay-677553-7742585.jpg", rating: 4.0},
+    {id: 7, name: "External Hard Drive 2TB", price: 3299, description: "Portable hard drive for backup", category: "Electronics", image: "images/products/b426131c-2206-4ddc-a864-72d22388b9bf._CR0,0,800,600_PT0_SX800__.jpg", rating: 4.4},
+    {id: 8, name: "Mechanical Keyboard", price: 2199, description: "RGB mechanical gaming keyboard", category: "Electronics", image: "images/products/pexels-yankrukov-9072292.jpg", rating: 4.6},
+    {id: 9, name: "Action Camera", price: 6899, description: "4K waterproof action camera", category: "Electronics", image: "images/products/pexels-michaeldupuis-4068343.jpg", rating: 4.4},
+    {id: 10, name: "Portable SSD 1TB", price: 4599, description: "High-speed portable solid state drive", category: "Electronics", image: "images/products/pexels-juanico-11553188.jpg", rating: 4.7},
+    {id: 11, name: "Denim Jacket", price: 1899, description: "Classic denim jacket for all seasons", category: "Clothing", image: "images/products/pexels-julia-kuzenkov-442028-1176618.jpg", rating: 4.3},
+    {id: 12, name: "Running Shoes", price: 2899, originalPrice: 3499, description: "Lightweight running shoes with cushion", category: "Clothing", image: "images/products/pexels-pixabay-163535.jpg", rating: 4.6, discount: 17},
+    {id: 13, name: "Cotton T-Shirt Pack", price: 999, description: "Pack of 3 basic cotton t-shirts", category: "Clothing", image: "images/products/pexels-tima-miroshnichenko-6764917.jpg", rating: 4.2},
+    {id: 14, name: "Winter Coat", price: 3499, description: "Waterproof winter coat with hood", category: "Clothing", image: "images/products/pexels-bymuratisikofficial-35551563.jpg", rating: 4.4},
+    {id: 15, name: "Yoga Pants", price: 1299, description: "Stretchy yoga pants for workouts", category: "Clothing", image: "images/products/pexels-cottonbro-7341729.jpg", rating: 4.5},
+    {id: 16, name: "Formal Shirt", price: 1499, description: "Premium cotton formal shirt", category: "Clothing", image: "images/products/pexels-cottonbro-8466221.jpg", rating: 4.3},
+    {id: 17, name: "Summer Dress", price: 1899, description: "Floral print summer dress", category: "Clothing", image: "images/products/pexels-evoking-ephemerality-222334091-35501785.jpg", rating: 4.7},
+    {id: 18, name: "Backpack", price: 1299, description: "Water-resistant backpack", category: "Clothing", image: "images/products/pexels-jibarofoto-3731256.jpg", rating: 4.4},
+    {id: 19, name: "Coffee Maker", price: 1899, description: "Automatic coffee maker", category: "Home & Kitchen", image: "images/products/pexels-chevanon-324028.jpg", rating: 4.5},
+    {id: 20, name: "Air Fryer", price: 2999, originalPrice: 3999, description: "Digital air fryer 5L capacity", category: "Home & Kitchen", image: "images/products/81w8+kLTeXL._AC_UF350,350_QL80_.jpg", rating: 4.6, discount: 25},
+    {id: 21, name: "Desk Lamp", price: 799, description: "LED desk lamp adjustable", category: "Home & Kitchen", image: "images/products/pexels-daniel-568290.jpg", rating: 4.2},
+    {id: 22, name: "Non-stick Pan Set", price: 1499, description: "3-piece non-stick pan set", category: "Home & Kitchen", image: "images/products/non-stickpanset.jpg", rating: 4.4},
+    {id: 23, name: "Electric Kettle", price: 899, description: "1.5L electric kettle", category: "Home & Kitchen", image: "images/products/pexels-fotios-photos-11255397.jpg", rating: 4.3},
+    {id: 24, name: "Vacuum Cleaner", price: 3899, description: "Cordless vacuum cleaner", category: "Home & Kitchen", image: "images/products/pexels-cottonbro-4107278.jpg", rating: 4.5},
+    {id: 25, name: "Blender", price: 1599, description: "High-speed blender 1000W", category: "Home & Kitchen", image: "images/products/pexels-valeria-ushakova-3094227.jpg", rating: 4.4},
+    {id: 26, name: "Rice Cooker", price: 1299, description: "10-cup rice cooker", category: "Home & Kitchen", image: "images/products/ricecooker1.jpg", rating: 4.6},
+    {id: 27, name: "Web Development Guide", price: 899, description: "Complete web development handbook", category: "Books", image: "images/products/webdev1.jpg", rating: 4.7},
+    {id: 28, name: "Cookbook Collection", price: 1299, description: "500+ recipes from around the world", category: "Books", image: "images/products/cookbook1.jpg", rating: 4.5},
+    {id: 29, name: "Business Strategy", price: 699, description: "Best-selling business strategy book", category: "Books", image: "images/products/daria-nepriakhina-474558-unsplash-e1546599640715-1000x500.jpg", rating: 4.4},
+    {id: 30, name: "Science Fiction Novel", price: 499, description: "Award-winning sci-fi novel", category: "Books", image: "images/products/fictionnovel1.jpg", rating: 4.8},
+    {id: 31, name: "Self-Help Guide", price: 599, description: "Personal development guide", category: "Books", image: "images/products/OnePageBookCoverImage.jpg", rating: 4.3},
+    {id: 32, name: "Children's Storybook", price: 399, description: "Colorful illustrated storybook", category: "Books", image: "images/products/childrenbook1.jpg", rating: 4.6},
+    {id: 33, name: "Yoga Mat", price: 699, description: "Non-slip yoga mat", category: "Sports", image: "images/products/pexels-cottonbro-4325439.jpg", rating: 4.4},
+    {id: 34, name: "Dumbbell Set", price: 1899, description: "Adjustable dumbbell set 20kg", category: "Sports", image: "images/products/pexels-dropshado-32543165.jpg", rating: 4.5},
+    {id: 35, name: "Basketball", price: 899, description: "Official size basketball", category: "Sports", image: "images/products/pexels-pixabay-220383.jpg", rating: 4.3},
+    {id: 36, name: "Running Shorts", price: 799, description: "Breathable running shorts", category: "Sports", image: "images/products/pexels-wesleydavi-33417687.jpg", rating: 4.2},
+    {id: 37, name: "Tennis Racket", price: 2499, description: "Professional tennis racket", category: "Sports", image: "images/products/pexels-pixabay-209977.jpg", rating: 4.6},
+    {id: 38, name: "Swimming Goggles", price: 499, description: "Anti-fog swimming goggles", category: "Sports", image: "images/products/pexels-shvets-production-8028456.jpg", rating: 4.1},
+    {id: 39, name: "Skincare Set", price: 1599, description: "Complete skincare routine set", category: "Beauty", image: "images/products/pexels-makrufinmuhammad-33538457.jpg", rating: 4.7},
+    {id: 40, name: "Hair Dryer", price: 1299, description: "Ionic hair dryer 2000W", category: "Beauty", image: "images/products/pexels-element5-973406.jpg", rating: 4.4},
+    {id: 41, name: "Perfume Collection", price: 2299, description: "3-piece perfume set", category: "Beauty", image: "images/products/pexels-valeriya-965990.jpg", rating: 4.6},
+    {id: 42, name: "Makeup Brush Set", price: 899, description: "12-piece makeup brush set", category: "Beauty", image: "images/products/pexels-mart-production-7290669.jpg", rating: 4.3},
+    {id: 43, name: "Sunscreen Lotion", price: 499, description: "SPF 50+ sunscreen lotion", category: "Beauty", image: "images/products/pexels-yaazhini-16443631.jpg", rating: 4.5},
+    {id: 44, name: "Face Mask Pack", price: 299, description: "Sheet mask pack 10 pieces", category: "Beauty", image: "images/products/pexels-cottonbro-3952240.jpg", rating: 4.2}
+];
 
+const productImages = {
+    1: ["images/products/headphone1.jpg", "images/products/mahavir-shah-izcprdHbC8A-unsplash.jpg", "images/products/chris-panas-UeITqYE-Xxw-unsplash.jpg"],
+    2: ["images/products/smartpro.jpg", "images/products/andrey-matveev-9mU2L4dVYFA-unsplash.jpg", "images/products/krishna-kumar-mNOVV4Ple2A-unsplash.jpg"],
+    3: ["images/products/pexels-cottonbro-6322724.jpg", "images/products/pexels-moises-ribeiro-121009898-11031429.jpg", "images/products/pexels-peterfazekas-880864.jpg"],
+    4: ["images/products/pexels-tima-miroshnichenko-7047612.jpg", "images/products/pexels-fox-58267-1486294.jpg", "images/products/pexels-zeleboba-33307580.jpg"],
+    5: ["images/products/pexels-rann-vijay-677553-7742583.jpg", "images/products/pexels-rann-vijay-677553-7742586.jpg", "images/products/pexels-rann-vijay-677553-7952599.jpg"],
+    6: ["images/products/pexels-rann-vijay-677553-7742585.jpg", "images/products/pexels-cottonbro-5083411.jpg", "images/products/pexels-oscar-helgstrand-3692072-5961044.jpg"],
+    7: ["images/products/hardrive1.jpg", "images/products/hardrive2.jpg", "images/products/b426131c-2206-4ddc-a864-72d22388b9bf._CR0,0,800,600_PT0_SX800__.jpg"],
+    8: ["images/products/pexels-yankrukov-9072292.jpg", "images/products/pexels-tima-miroshnichenko-5380602.jpg", "images/products/pexels-yankrukov-9072345.jpg"],
+    9: ["images/products/pexels-michaeldupuis-4068343.jpg", "images/products/pexels-witheline-30522080.jpg", "images/products/pexels-hikaique-90366.jpg"],
+    10: ["images/products/pexels-juanico-11553188.jpg", "images/products/pexels-japy-5335964.jpg", "images/products/pexels-avinash-kumar-299518778-13595094.jpg"],
+    11: ["images/products/pexels-julia-kuzenkov-442028-1176618.jpg", "images/products/pexels-imdennyz-2229712.jpg", "images/products/pexels-steshkacroes-2344601.jpg"],
+    12: ["images/products/pexels-pixabay-163535.jpg", "images/products/pexels-pixabay-258453.jpg", "images/products/pexels-lilartsy-1625620.jpg"],
+    13: ["images/products/pexels-tima-miroshnichenko-6764917.jpg", "images/products/pexels-ivan-s-7671168.jpg", "images/products/pexels-dasha-musohranova-1745017-6051248.jpg"],
+    14: ["images/products/pexels-bymuratisikofficial-35551563.jpg", "images/products/pexels-2156836211-35551347.jpg", "images/products/pexels-gizem-gokce-1072613075-35538686.jpg"],
+    15: ["images/products/yoga1.jpg", "images/products/yoga2.jpg", "images/products/pexels-cottonbro-7341729.jpg"],
+    16: ["images/products/pexels-cottonbro-8465275.jpg", "images/products/pexels-cottonbro-8466221.jpg", "images/products/pexels-cottonbro-8465272.jpg"],
+    17: ["images/products/pexels-evoking-ephemerality-222334091-35501785.jpg", "images/products/pexels-mohammadabbasi-30644458.jpg", "images/products/pexels-pelageia-zelenina-58865108-8444364.jpg"],
+    18: ["images/products/pexels-jibarofoto-3731256.jpg", "images/products/pexels-matthardy-1928078.jpg", "images/products/pexels-vlad-714063.jpg"],
+    19: ["images/products/pexels-chevanon-324028.jpg", "images/products/pexels-ekrulila-2128018.jpg", "images/products/pexels-jonathanborba-2878709.jpg"],
+    20: ["images/products/81w8+kLTeXL._AC_UF350,350_QL80_.jpg", "images/products/51Omh8DLQgL._AC_UF1000,1000_QL80_.jpg", "images/products/images.jpg"],
+    21: ["images/products/pexels-daniel-568290.jpg", "images/products/pexels-fariphotography-1112598.jpg", "images/products/pexels-julienblt-923311.jpg"],
+    22: ["images/products/non-stickpanset.jpg", "images/products/non-stickpanse2.jpg", "images/products/non-stickpanse3.jpg"],
+    23: ["images/products/pexels-fotios-photos-11255397.jpg", "images/products/pexels-enginakyurt-10965752.jpg", "images/products/pexels-mohammadabbasi-30319671.jpg"],
+    24: ["images/products/pexels-cottonbro-4107278.jpg", "images/products/pexels-cottonbro-4107286.jpg", "images/products/pexels-cottonbro-4107257.jpg"],
+    25: ["images/products/pexels-valeria-ushakova-3094227.jpg", "images/products/pexels-mikhail-nilov-6707609.jpg", "images/products/pexels-cottonbro-6802632.jpg"],
+    26: ["images/products/ricecooker1.jpg", "images/products/ricecooker2.jpg", "images/products/ricecooker3.jpg"],
+    27: ["images/products/webdev1.jpg", "images/products/webdev2.jpg", "images/products/webdev3.jpg"],
+    28: ["images/products/cookbook1.jpg", "images/products/cookbook2.jpg", "images/products/pexels-brettjordan-34731136.jpg"],
+    29: ["images/products/daria-nepriakhina-474558-unsplash-e1546599640715-1000x500.jpg", "images/products/daria-nepriakhina-474558-unsplash-e1546599640715-1000x501.jpg", "images/products/chtm-news1.jpg"],
+    30: ["images/products/fictionnovel1.jpg", "images/products/scifi-books-2.jpg", "images/products/scifi-books-3.jpg"],
+    31: ["images/products/OnePageBookCoverImage.jpg", "images/products/OnePageBookCoverImage2.jpg", "images/products/OnePageBookCoverImage3.jpg"],
+    32: ["images/products/childrenbook1.jpg", "images/products/childrenbook2.jpg", "images/products/childrenbook3.jpg"],
+    33: ["images/products/pexels-cottonbro-4325439.jpg", "images/products/pexels-karlsolano-2780762.jpg", "images/products/pexels-cottonbro-4327014.jpg"],
+    34: ["images/products/pexels-dropshado-32543165.jpg", "images/products/pexels-andres-ayrton-6550857.jpg", "images/products/pexels-alesiakozik-7289298.jpg"],
+    35: ["images/products/pexels-pixabay-220383.jpg", "images/products/pexels-markusspiske-3001822.jpg", "images/products/pexels-pixabay-159611.jpg"],
+    36: ["images/products/pexels-wesleydavi-33417687.jpg", "images/products/pexels-koolshooters-8520627.jpg", "images/products/pexels-ketut-subiyanto-5037385.jpg"],
+    37: ["images/products/pexels-pixabay-209977.jpg", "images/products/pexels-gonchifacello-1432039.jpg", "images/products/pexels-cottonbro-5739121.jpg"],
+    38: ["images/products/pexels-shvets-production-8028456.jpg", "images/products/pexels-shvets-production-8028417.jpg", "images/products/pexels-kindelmedia-8688570.jpg"],
+    39: ["images/products/pexels-makrufinmuhammad-33538457.jpg", "images/products/pexels-denys-11935630.jpg", "images/products/pexels-denys-11935634.jpg"],
+    40: ["images/products/pexels-element5-973406.jpg", "images/products/pexels-cottonbro-3993328.jpg", "images/products/pexels-vics-11879094.jpg"],
+    41: ["images/products/pexels-valeriya-965990.jpg", "images/products/pexels-cottonbro-7598173.jpg", "images/products/pexels-larissafarber-30770233.jpg"],
+    42: ["images/products/pexels-mart-production-7290669.jpg", "images/products/pexels-n-voitkevich-5128193.jpg", "images/products/pexels-by-natallia-311038782-13714624.jpg"],
+    43: ["images/products/pexels-yaazhini-16443631.jpg", "images/products/pexels-hadis-13624926.jpg", "images/products/pexels-olena-ushakova-214375532-11812426.jpg"],
+    44: ["images/products/pexels-cottonbro-3952240.jpg", "images/products/pexels-cdc-library-3993241.jpg", "images/products/facemask3.jpg"]
+};
 
+Object.keys(productImages).forEach(productId => {
+    productImages[productId] = productImages[productId].map(img => img);
+});
 
 const categories = ['All', ...new Set(products.map(p => p.category))];
 let cart = [], currentStep = 1, selectedPayment = 'cod', shippingInfo = {}, orderNumber = Math.floor(100000 + Math.random() * 900000);
 
+// ====== NEW: Authentication Variables ======
+let pendingCheckout = false;
+
+// ====== DOM Elements ======
 const productsContainer = document.getElementById('products-container');
 const cartModal = document.getElementById('cart-modal');
 const checkoutModal = document.getElementById('checkout-modal');
 const successModal = document.getElementById('success-modal');
+const productModal = document.getElementById('product-modal');
 const cartItemsContainer = document.getElementById('cart-items');
 const cartCountElement = document.querySelector('.cart-count');
 const cartIcon = document.querySelector('.cart-icon');
@@ -59,7 +116,7 @@ const searchBtn = document.getElementById('search-btn');
 const categoryFilter = document.getElementById('category-filter');
 const categoryDropdown = document.getElementById('category-dropdown');
 const productCount = document.getElementById('product-count');
-const checkoutBtn = document.querySelector('.checkout-btn');
+const checkoutBtn = document.getElementById('checkoutBtn');
 const closeModalBtns = document.querySelectorAll('.close-modal');
 const continueShoppingBtn = document.querySelector('.close-modal-btn');
 const prevStepBtn = document.getElementById('prev-step');
@@ -70,10 +127,21 @@ const paymentMethods = document.querySelectorAll('.payment-method');
 const continueShoppingSuccess = document.getElementById('continue-shopping');
 const viewOrdersBtn = document.getElementById('view-orders');
 
+// ====== NEW: Authentication DOM Elements ======
+const loginModal = document.getElementById('login-modal');
+const loginBtn = document.getElementById('loginBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+const userDisplay = document.getElementById('userDisplay');
+const userDisplayText = document.getElementById('userDisplayText');
+const userDropdownContent = document.getElementById('userDropdownContent');
+
+// ====== Initialize ======
 displayCategories();
 displayProducts(products);
 loadCart();
+checkAuthStatus();
 
+// ====== Category Functions ======
 function displayCategories() {
     categoryFilter.innerHTML = '';
     categoryDropdown.innerHTML = '';
@@ -99,13 +167,31 @@ function displayProducts(productsToShow) {
     productsToShow.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
+        productCard.style.cursor = 'pointer';
+        productCard.onclick = () => showProductDetails(product.id);
+        
         let badgeHTML = product.discount ? `<div class="product-badge">-${product.discount}%</div>` : '';
         let priceHTML = `<div class="product-price">₱${product.price.toLocaleString()}`;
         if (product.originalPrice) {
             priceHTML += `<span class="original-price">₱${product.originalPrice.toLocaleString()}</span><span class="discount">Save ${product.discount}%</span>`;
         }
         priceHTML += '</div>';
-        productCard.innerHTML = `${badgeHTML}<div class="product-image"><img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;"></div><div class="product-info"><div class="product-category"><i class="fas fa-tag"></i> ${product.category}</div><h3 class="product-title">${product.name}</h3><p class="product-description">${product.description}</p>${priceHTML}<button class="add-to-cart" onclick="addToCart(${product.id})"><i class="fas fa-cart-plus"></i> Add to Cart</button></div>`;
+        
+        productCard.innerHTML = `
+            ${badgeHTML}
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="product-info">
+                <div class="product-category"><i class="fas fa-tag"></i> ${product.category}</div>
+                <h3 class="product-title">${product.name}</h3>
+                <p class="product-description">${product.description}</p>
+                ${priceHTML}
+                <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${product.id})">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+            </div>
+        `;
         productsContainer.appendChild(productCard);
     });
     productCount.textContent = `Showing ${productsToShow.length} products`;
@@ -125,6 +211,108 @@ function searchProducts() {
     displayProducts(products.filter(p => p.name.toLowerCase().includes(searchTerm) || p.description.toLowerCase().includes(searchTerm) || p.category.toLowerCase().includes(searchTerm)));
 }
 
+// ====== Product Details Functions ======
+function showProductDetails(productId) {
+    const product = products.find(p => p.id === productId);
+    const images = productImages[productId] || [product.image, product.image, product.image];
+    
+    const detailsContainer = document.getElementById('product-details-container');
+    
+    detailsContainer.innerHTML = `
+        <div class="product-gallery">
+            <div class="main-image">
+                <img src="${images[0]}" alt="${product.name}" id="main-product-image">
+            </div>
+            <div class="thumbnail-images">
+                ${images.map((img, index) => `
+                    <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeMainImage('${img}', this)">
+                        <img src="${img}" alt="${product.name} view ${index + 1}">
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        <div class="product-info-details">
+            <div class="product-header">
+                <h2>${product.name}</h2>
+                <div class="product-rating">
+                    ${getStarRating(product.rating)}
+                    <span>(${product.rating}/5)</span>
+                </div>
+            </div>
+            
+            <div class="product-price-details">
+                <div class="current-price">₱${product.price.toLocaleString()}</div>
+                ${product.originalPrice ? `
+                    <div class="original-price-details">
+                        <span class="original-price">₱${product.originalPrice.toLocaleString()}</span>
+                        <span class="discount-badge">-${product.discount}%</span>
+                    </div>
+                ` : ''}
+            </div>
+            
+            <div class="product-category-details">
+                <i class="fas fa-tag"></i> ${product.category}
+            </div>
+            
+            <div class="product-description-details">
+                <h3>Description</h3>
+                <p>${product.description}</p>
+            </div>
+            
+            <div class="product-specs">
+                <h3>Features</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> High quality materials</li>
+                    <li><i class="fas fa-check-circle"></i> 1 year warranty</li>
+                    <li><i class="fas fa-check-circle"></i> Free shipping nationwide</li>
+                    <li><i class="fas fa-check-circle"></i> 30-day return policy</li>
+                </ul>
+            </div>
+            
+            <div class="product-actions">
+                <button class="btn btn-primary add-to-cart-details" onclick="addToCartFromDetails(${product.id})">
+                    <i class="fas fa-cart-plus"></i> Add to Cart - ₱${product.price.toLocaleString()}
+                </button>
+                <button class="btn btn-secondary" onclick="closeProductModal()">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    `;
+    
+    productModal.style.display = 'flex';
+}
+
+function addToCartFromDetails(productId) {
+    addToCart(productId);
+    showNotification('Added to cart!');
+}
+
+function getStarRating(rating) {
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= Math.floor(rating)) {
+            stars += '<i class="fas fa-star"></i>';
+        } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+            stars += '<i class="fas fa-star-half-alt"></i>';
+        } else {
+            stars += '<i class="far fa-star"></i>';
+        }
+    }
+    return stars;
+}
+
+function changeMainImage(imageSrc, element) {
+    document.getElementById('main-product-image').src = imageSrc;
+    document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+    element.classList.add('active');
+}
+
+function closeProductModal() {
+    productModal.style.display = 'none';
+}
+
+// ====== Cart Functions ======
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     const existingItem = cart.find(item => item.id === productId);
@@ -187,7 +375,257 @@ function showNotification(message) {
 
 function saveCart() { localStorage.setItem('simpleEcommerceCart', JSON.stringify(cart)); }
 function loadCart() { const savedCart = localStorage.getItem('simpleEcommerceCart'); if (savedCart) { cart = JSON.parse(savedCart); updateCart(); } }
-function proceedToCheckout() { cartModal.style.display = 'none'; checkoutModal.style.display = 'flex'; resetCheckoutSteps(); updateCheckoutSummary(); }
+
+// ====== NEW: Authentication Functions ======
+function checkAuthStatus() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const currentUser = localStorage.getItem("currentUser");
+    
+    if (isLoggedIn && currentUser) {
+        // User is logged in
+        const userName = currentUser.split('@')[0];
+        const displayName = userName.charAt(0).toUpperCase() + userName.slice(1);
+        userDisplayText.textContent = `Hi, ${displayName}`;
+        if (loginBtn) loginBtn.style.display = "none";
+        if (logoutBtn) logoutBtn.style.display = "block";
+    } else {
+        // User is not logged in
+        userDisplayText.textContent = "Account";
+        if (loginBtn) loginBtn.style.display = "block";
+        if (logoutBtn) logoutBtn.style.display = "none";
+    }
+}
+
+// ====== NEW: Proceed to Checkout with Authentication Check ======
+function proceedToCheckout() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    
+    if (!isLoggedIn) {
+        // User not logged in, show login modal first
+        pendingCheckout = true;
+        loadLoginForm();
+        loginModal.style.display = "flex";
+        cartModal.style.display = "none";
+        showNotification("Please login or register to proceed with checkout");
+        return;
+    }
+    
+    // User is logged in, proceed with checkout
+    cartModal.style.display = "none";
+    checkoutModal.style.display = "flex";
+    resetCheckoutSteps();
+    updateCheckoutSummary();
+}
+
+// ====== NEW: Load Login Form into Modal ======
+function loadLoginForm() {
+    const container = document.getElementById('login-form-container');
+    
+    container.innerHTML = `
+        <div class="login-form-wrapper">
+            <h2 id="modalFormTitle">Welcome Back</h2>
+            <p class="form-subtitle" id="modalFormSubtitle">Please login to continue</p>
+
+            <form id="modalAuthForm">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="modalUserEmail" placeholder="Email Address" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="modalPassword" placeholder="Password" required>
+                </div>
+
+                <div class="input-group" id="modalConfirmPasswordGroup" style="display:none;">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="modalConfirmPassword" placeholder="Confirm Password">
+                </div>
+
+                <button type="submit" id="modalSubmitBtn" class="login-btn">
+                    <span id="modalBtnText">Login</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <p id="modalErrorMsg" class="error-message"></p>
+            </form>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <p class="switch-text">
+                <span id="modalSwitchText">Don't have an account?</span>
+                <a href="#" id="modalSwitchBtn" class="switch-link">Create Account</a>
+            </p>
+        </div>
+    `;
+    
+    // Initialize the modal form functionality
+    initializeModalAuth();
+}
+
+// ====== NEW: Initialize Modal Authentication ======
+function initializeModalAuth() {
+    const formTitle = document.getElementById("modalFormTitle");
+    const switchBtn = document.getElementById("modalSwitchBtn");
+    const switchText = document.getElementById("modalSwitchText");
+    const confirmPasswordGroup = document.getElementById("modalConfirmPasswordGroup");
+    const confirmPassword = document.getElementById("modalConfirmPassword");
+    const submitBtn = document.getElementById("modalSubmitBtn");
+    const btnText = document.getElementById("modalBtnText");
+    const errorMsg = document.getElementById("modalErrorMsg");
+    const formSubtitle = document.querySelector("#login-form-container .form-subtitle");
+    
+    let isLogin = true;
+
+    // Switch between Login and Register
+    switchBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        isLogin = !isLogin;
+
+        if (isLogin) {
+            formTitle.innerText = "Welcome Back";
+            formSubtitle.innerText = "Please login to continue";
+            btnText.innerText = "Login";
+            switchText.innerText = "Don't have an account?";
+            switchBtn.innerText = "Create Account";
+            confirmPasswordGroup.style.display = "none";
+            confirmPassword.removeAttribute("required");
+        } else {
+            formTitle.innerText = "Create Account";
+            formSubtitle.innerText = "Join ShopEasy today!";
+            btnText.innerText = "Register";
+            switchText.innerText = "Already have an account?";
+            switchBtn.innerText = "Login";
+            confirmPasswordGroup.style.display = "block";
+            confirmPassword.setAttribute("required", "required");
+        }
+
+        errorMsg.innerText = "";
+    });
+
+    // Handle form submission
+    document.getElementById("modalAuthForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("modalUserEmail").value.trim().toLowerCase();
+        const password = document.getElementById("modalPassword").value;
+        const confirm = document.getElementById("modalConfirmPassword").value;
+
+        errorMsg.innerText = "";
+
+        // Validate input
+        if (!email || !password) {
+            showModalError("Please fill in all fields");
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            showModalError("Please enter a valid email address");
+            return;
+        }
+
+        if (password.length < 6) {
+            showModalError("Password must be at least 6 characters");
+            return;
+        }
+
+        // Get users from localStorage
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        if (!isLogin) {
+            // REGISTER MODE
+            if (password !== confirm) {
+                showModalError("Passwords do not match");
+                return;
+            }
+
+            // Check if email already exists
+            const userExists = users.find(u => u.email === email);
+            if (userExists) {
+                showModalError("This email is already registered");
+                return;
+            }
+
+            // Add new user
+            users.push({ email, password });
+            localStorage.setItem("users", JSON.stringify(users));
+
+            // Show success message
+            showModalSuccess("Account created successfully! Logging you in...");
+            
+            // Automatically log in after registration
+            setTimeout(() => {
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("currentUser", email);
+                checkAuthStatus();
+                loginModal.style.display = "none";
+                showNotification("Welcome to ShopEasy!");
+                
+                // If user was trying to checkout, proceed with checkout
+                if (pendingCheckout) {
+                    pendingCheckout = false;
+                    proceedToCheckout();
+                }
+            }, 1500);
+            return;
+        }
+
+        // LOGIN MODE
+        const validUser = users.find(
+            u => u.email === email && u.password === password
+        );
+
+        if (validUser) {
+            // Login successful
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("currentUser", email);
+            
+            // Show success
+            showModalSuccess("Login successful!");
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                checkAuthStatus();
+                loginModal.style.display = "none";
+                showNotification("Welcome back!");
+                
+                // If user was trying to checkout, proceed with checkout
+                if (pendingCheckout) {
+                    pendingCheckout = false;
+                    proceedToCheckout();
+                }
+            }, 1000);
+        } else {
+            showModalError("Invalid email or password");
+        }
+    });
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function showModalError(message) {
+        errorMsg.innerText = message;
+        errorMsg.style.background = "#ffe5e8";
+        errorMsg.style.color = "#ff4757";
+        errorMsg.style.animation = "shake 0.5s";
+        setTimeout(() => {
+            errorMsg.style.animation = "";
+        }, 500);
+    }
+
+    function showModalSuccess(message) {
+        errorMsg.innerText = message;
+        errorMsg.style.background = "#d4edda";
+        errorMsg.style.color = "#155724";
+    }
+}
+
+// ====== Checkout Functions ======
 function resetCheckoutSteps() { currentStep = 1; updateCheckoutSteps(); }
 
 function updateCheckoutSteps() {
@@ -292,13 +730,25 @@ function validateShippingForm() {
     return true;
 }
 
-cartIcon.addEventListener('click', () => { cartModal.style.display = 'flex'; });
+// ====== Event Listeners ======
+cartIcon.addEventListener('click', () => { cartModal.style.display = "flex"; });
 searchBtn.addEventListener('click', searchProducts);
 searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') searchProducts(); });
 checkoutBtn.addEventListener('click', proceedToCheckout);
-closeModalBtns.forEach(btn => { btn.addEventListener('click', () => { cartModal.style.display = 'none'; checkoutModal.style.display = 'none'; successModal.style.display = 'none'; }); });
+
+closeModalBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        cartModal.style.display = 'none';
+        checkoutModal.style.display = 'none';
+        successModal.style.display = 'none';
+        productModal.style.display = 'none';
+        loginModal.style.display = 'none';
+    });
+});
+
 continueShoppingBtn.addEventListener('click', () => { cartModal.style.display = 'none'; });
 prevStepBtn.addEventListener('click', () => { if (currentStep > 1) { currentStep--; updateCheckoutSteps(); } });
+
 nextStepBtn.addEventListener('click', () => {
     if (currentStep === 1) {
         if (!validateShippingForm()) { showNotification('Please complete all required shipping information'); return; }
@@ -337,9 +787,46 @@ document.querySelectorAll('input[name="shipping"]').forEach(radio => {
 
 document.getElementById('agree-terms').addEventListener('change', (e) => { placeOrderBtn.disabled = !e.target.checked; });
 continueShoppingSuccess.addEventListener('click', () => { successModal.style.display = 'none'; });
-viewOrdersBtn.addEventListener('click', () => { alert(`Your order #${orderNumber} has been placed successfully!\n\nWe have sent a confirmation email to ${shippingInfo.email || 'your email'}.`); successModal.style.display = 'none'; });
+viewOrdersBtn.addEventListener('click', () => {
+    const currentUser = localStorage.getItem("currentUser");
+    if (!currentUser) {
+        loadLoginForm();
+        loginModal.style.display = 'flex';
+        successModal.style.display = 'none';
+        return;
+    }
+    alert(`Your order #${orderNumber} has been placed successfully!\n\nWe have sent a confirmation email to ${shippingInfo.email || 'your email'}.`);
+    successModal.style.display = 'none';
+});
 
-window.addEventListener('click', (e) => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; });
+// ====== NEW: Login/Logout Event Listeners ======
+if (loginBtn) {
+    loginBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        loadLoginForm();
+        loginModal.style.display = 'flex';
+    });
+}
+
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        
+        if (confirm("Are you sure you want to logout?")) {
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("currentUser");
+            checkAuthStatus();
+            showNotification("Logged out successfully");
+        }
+    });
+}
+
+// ====== Other Event Listeners ======
+window.addEventListener('click', (e) => { 
+    if (e.target.classList.contains('modal')) {
+        e.target.style.display = 'none';
+    }
+});
 
 if (window.innerWidth < 768) {
     document.querySelectorAll('.nav-link span:not(.cart-count)').forEach(span => { span.style.display = 'none'; });
@@ -354,31 +841,15 @@ window.addEventListener('resize', () => {
 });
 
 const style = document.createElement('style');
-style.textContent = `@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; }} @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; }}`;
+style.textContent = `@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; }} @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; }} @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); }}`;
 document.head.appendChild(style);
 
-// Logout functionality
-document.getElementById("logoutBtn").addEventListener("click", function (e) {
-    e.preventDefault();
+// ====== Initialize on page load ======
+document.addEventListener('DOMContentLoaded', function() {
+    checkAuthStatus();
     
-    // Confirm logout
-    if (confirm("Are you sure you want to logout?")) {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("currentUser");
-        window.location.href = "login.html";
+    // Check if there's a pending checkout after page load
+    if (pendingCheckout) {
+        proceedToCheckout();
     }
 });
-
-// Display current user - Extract name from email
-const userDisplay = document.getElementById("userDisplay");
-const currentUser = localStorage.getItem("currentUser");
-
-if (userDisplay && currentUser) {
-    // Extract the name part before @ symbol
-    const userName = currentUser.split('@')[0];
-    
-    // Capitalize first letter for nicer display
-    const displayName = userName.charAt(0).toUpperCase() + userName.slice(1);
-    
-    userDisplay.innerHTML = `<i class="fas fa-user"></i> Hi, ${displayName} <i class="fas fa-chevron-down"></i>`;
-}

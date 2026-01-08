@@ -45,6 +45,7 @@
                 </button>
                 <div class="dropdown-content" id="userDropdownContent">
                     <a href="#" id="loginBtn">🔐 Login/Register</a>
+                    <a href="#" id="myOrdersBtn">📦 My Orders</a>
                     <a href="#" id="logoutBtn" style="display:none;">🚪 Logout</a>
                 </div>
             </div>
@@ -374,6 +375,27 @@
             <div class="modal-body">
                 <div class="login-form-container" id="login-form-container">
                     <!-- Login/Register form will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Orders Modal -->
+    <div class="modal" id="orders-modal">
+        <div class="modal-content orders-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-box"></i> My Orders</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="orders-container" id="orders-container">
+                    <!-- Orders will be loaded here -->
+                    <div class="empty-orders">
+                        <i class="fas fa-box-open"></i>
+                        <h3>No orders yet</h3>
+                        <p>Your order history will appear here</p>
+                        <button class="btn btn-primary" id="start-shopping-btn">Start Shopping</button>
+                    </div>
                 </div>
             </div>
         </div>

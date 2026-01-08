@@ -135,6 +135,30 @@ const userDisplay = document.getElementById('userDisplay');
 const userDisplayText = document.getElementById('userDisplayText');
 const userDropdownContent = document.getElementById('userDropdownContent');
 
+// ====== NEW: Orders DOM Elements ======
+const ordersModal = document.getElementById('orders-modal');
+const myOrdersBtn = document.getElementById('myOrdersBtn');
+const ordersContainer = document.getElementById('orders-container');
+const startShoppingBtn = document.getElementById('start-shopping-btn');
+
+// Order status types
+const ORDER_STATUS = {
+    PENDING: 'pending',
+    PROCESSING: 'processing',
+    SHIPPED: 'shipped',
+    DELIVERED: 'delivered',
+    CANCELLED: 'cancelled'
+};
+
+// Tracking steps
+const TRACKING_STEPS = [
+    { id: 'ordered', title: 'Order Placed', desc: 'Your order has been received' },
+    { id: 'confirmed', title: 'Order Confirmed', desc: 'Order has been confirmed' },
+    { id: 'processing', title: 'Processing', desc: 'Preparing your order for shipment' },
+    { id: 'shipped', title: 'Shipped', desc: 'Your order is on the way' },
+    { id: 'delivered', title: 'Delivered', desc: 'Order has been delivered' }
+];
+
 // ====== Initialize ======
 displayCategories();
 displayProducts(products);
@@ -692,6 +716,16 @@ function placeOrder() {
     };
     placeOrderBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     placeOrderBtn.disabled = true;
+    
+    // Save order before sending email
+    const paymentMethod = selectedPayment === 'cod' ? 'Cash on Delivery' : 
+                          selectedPayment === 'gcash' ? 'GCash' :
+                          selectedPayment === 'maya' ? 'Maya' :
+                          selectedPayment === 'bank' ? 'Bank Transfer' : 'Credit/Debit Card';
+    
+    // Save order first
+    createOrderFromCart(shippingInfo, paymentMethod, shippingMethod);
+    
     emailjs.send('service_5rt0kfr', 'template_udy9mmi', emailParams).then(function (response) {
         console.log('Email sent successfully!', response.status, response.text);
         document.getElementById('order-number').textContent = `#${orderNumber}`;
@@ -730,6 +764,259 @@ function validateShippingForm() {
     return true;
 }
 
+// ====== ORDERS FUNCTIONS ======
+let orders = JSON.parse(localStorage.getItem('shopEasyOrders')) || [];
+
+function saveOrders() {
+    localStorage.setItem('shopEasyOrders', JSON.stringify(orders));
+}
+
+function createOrderFromCart(shippingInfo, paymentMethod, shippingMethod) {
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const shippingFee = shippingMethod === 'express' ? 150 : 50;
+    const total = subtotal + shippingFee;
+    
+    // Get current user email
+    const currentUser = localStorage.getItem("currentUser");
+    
+    const newOrder = {
+        id: Date.now(),
+        orderNumber: orderNumber,
+        date: new Date().toISOString(),
+        items: [...cart], // Deep copy of cart items
+        shippingInfo: { 
+            ...shippingInfo,
+            userId: currentUser // Add userId to identify user
+        },
+        paymentMethod: paymentMethod,
+        shippingMethod: shippingMethod,
+        subtotal: subtotal,
+        shippingFee: shippingFee,
+        total: total,
+        status: ORDER_STATUS.PENDING,
+        tracking: {
+            ordered: new Date().toISOString(),
+            confirmed: null,
+            processing: null,
+            shipped: null,
+            delivered: null
+        },
+        estimatedDelivery: shippingMethod === 'express' ? 
+            '1-2 business days' : '3-5 business days',
+        userId: currentUser // Add userId at root level for easy filtering
+    };
+    
+    orders.unshift(newOrder); // Add to beginning
+    saveOrders();
+    return newOrder;
+}
+
+function updateOrderStatus(orderId, newStatus) {
+    const order = orders.find(o => o.id === orderId);
+    if (order) {
+        order.status = newStatus;
+        if (newStatus === ORDER_STATUS.PROCESSING) {
+            order.tracking.confirmed = new Date().toISOString();
+        } else if (newStatus === ORDER_STATUS.SHIPPED) {
+            order.tracking.processing = new Date().toISOString();
+            order.tracking.shipped = new Date().toISOString();
+        } else if (newStatus === ORDER_STATUS.DELIVERED) {
+            order.tracking.delivered = new Date().toISOString();
+        }
+        saveOrders();
+        return true;
+    }
+    return false;
+}
+
+function displayOrders() {
+    const currentUser = localStorage.getItem("currentUser");
+    const userEmail = currentUser ? currentUser.toLowerCase() : null;
+    
+    // Debug log
+    console.log("Current User:", userEmail);
+    console.log("All Orders:", orders);
+    
+    if (!userEmail) {
+        ordersContainer.innerHTML = `
+            <div class="empty-orders">
+                <i class="fas fa-user-lock"></i>
+                <h3>Please Login</h3>
+                <p>You need to login to view your orders</p>
+                <button class="btn btn-primary" id="login-from-orders">Login Now</button>
+            </div>
+        `;
+        
+        // Add event listener for login button
+        setTimeout(() => {
+            const loginBtn = document.getElementById('login-from-orders');
+            if (loginBtn) {
+                loginBtn.addEventListener('click', () => {
+                    ordersModal.style.display = 'none';
+                    loadLoginForm();
+                    loginModal.style.display = 'flex';
+                });
+            }
+        }, 100);
+        
+        return;
+    }
+    
+    // Filter orders by current user email
+    const userOrders = orders.filter(order => {
+        // Check both userId fields and shippingInfo.email
+        const orderUserId = order.userId || (order.shippingInfo && order.shippingInfo.userId);
+        const orderEmail = order.shippingInfo && order.shippingInfo.email;
+        
+        return (orderUserId && orderUserId.toLowerCase() === userEmail) || 
+               (orderEmail && orderEmail.toLowerCase() === userEmail);
+    });
+    
+    console.log("User Orders:", userOrders);
+    
+    if (userOrders.length === 0) {
+        ordersContainer.innerHTML = `
+            <div class="empty-orders">
+                <i class="fas fa-box-open"></i>
+                <h3>No orders yet</h3>
+                <p>Your order history will appear here</p>
+                <button class="btn btn-primary" id="start-shopping-btn">Start Shopping</button>
+            </div>
+        `;
+        
+        // Add event listener for start shopping button
+        setTimeout(() => {
+            const startBtn = document.getElementById('start-shopping-btn');
+            if (startBtn) {
+                startBtn.addEventListener('click', () => {
+                    ordersModal.style.display = 'none';
+                });
+            }
+        }, 100);
+        
+        return;
+    }
+    
+    // Sort orders by date (newest first)
+    userOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    ordersContainer.innerHTML = userOrders.map(order => `
+        <div class="order-card" data-order-id="${order.id}">
+            <div class="order-header">
+                <div class="order-info">
+                    <div class="order-number">Order #${order.orderNumber}</div>
+                    <div class="order-date">${new Date(order.date).toLocaleDateString('en-PH', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })}</div>
+                </div>
+                <div class="order-status status-${order.status}">${order.status}</div>
+                <div class="order-total">₱${order.total.toLocaleString()}</div>
+            </div>
+            
+            <div class="order-items-list">
+                ${order.items.map(item => `
+                    <div class="order-item">
+                        <div class="item-image">
+                            <img src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/60x60?text=No+Image'">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-price">₱${item.price.toLocaleString()} × ${item.quantity}</div>
+                            <div class="item-quantity">Total: ₱${(item.price * item.quantity).toLocaleString()}</div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <div class="order-footer">
+                <div class="shipping-method">
+                    <i class="fas fa-shipping-fast"></i>
+                    ${order.shippingMethod === 'express' ? 'Express Delivery' : 'Standard Delivery'}
+                </div>
+                <div class="tracking-info">
+                    <span class="estimated-delivery">
+                        <i class="fas fa-calendar-alt"></i>
+                        Est. Delivery: ${order.estimatedDelivery}
+                    </span>
+                    <button class="track-btn" onclick="showTracking('${order.id}')">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Track Order
+                    </button>
+                </div>
+            </div>
+            
+            <div class="tracking-steps" id="tracking-${order.id}">
+                <h4><i class="fas fa-map-marked-alt"></i> Order Tracking</h4>
+                <div class="timeline">
+                    ${TRACKING_STEPS.map((step, index) => {
+                        const stepDate = order.tracking[step.id];
+                        const isActive = order.status === step.id;
+                        const isCompleted = stepDate !== null;
+                        
+                        return `
+                            <div class="timeline-step ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}">
+                                <div class="timeline-content">
+                                    <h4>${step.title}</h4>
+                                    <p>${step.desc}</p>
+                                    ${stepDate ? 
+                                        `<div class="timeline-date">${new Date(stepDate).toLocaleDateString('en-PH', {
+                                            month: 'short',
+                                            day: 'numeric',
+                                            hour: '2-digit',
+                                            minute: '2-digit'
+                                        })}</div>` 
+                                        : ''
+                                    }
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function showTracking(orderId) {
+    const trackingElement = document.getElementById(`tracking-${orderId}`);
+    const isVisible = trackingElement.classList.contains('show');
+    
+    // Hide all other tracking
+    document.querySelectorAll('.tracking-steps').forEach(el => {
+        el.classList.remove('show');
+    });
+    
+    // Toggle current tracking
+    if (!isVisible) {
+        trackingElement.classList.add('show');
+    }
+}
+
+function showMyOrders() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    
+    if (!isLoggedIn) {
+        // Show login modal first
+        pendingCheckout = false;
+        loadLoginForm();
+        loginModal.style.display = "flex";
+        ordersModal.style.display = "none";
+        showNotification("Please login to view your orders");
+        return;
+    }
+    
+    // Refresh orders from localStorage
+    orders = JSON.parse(localStorage.getItem('shopEasyOrders')) || [];
+    
+    // Display orders
+    displayOrders();
+    ordersModal.style.display = "flex";
+}
+
 // ====== Event Listeners ======
 cartIcon.addEventListener('click', () => { cartModal.style.display = "flex"; });
 searchBtn.addEventListener('click', searchProducts);
@@ -743,6 +1030,7 @@ closeModalBtns.forEach(btn => {
         successModal.style.display = 'none';
         productModal.style.display = 'none';
         loginModal.style.display = 'none';
+        ordersModal.style.display = 'none';
     });
 });
 
@@ -788,16 +1076,17 @@ document.querySelectorAll('input[name="shipping"]').forEach(radio => {
 document.getElementById('agree-terms').addEventListener('change', (e) => { placeOrderBtn.disabled = !e.target.checked; });
 continueShoppingSuccess.addEventListener('click', () => { successModal.style.display = 'none'; });
 viewOrdersBtn.addEventListener('click', () => {
-    const currentUser = localStorage.getItem("currentUser");
-    if (!currentUser) {
-        loadLoginForm();
-        loginModal.style.display = 'flex';
-        successModal.style.display = 'none';
-        return;
-    }
-    alert(`Your order #${orderNumber} has been placed successfully!\n\nWe have sent a confirmation email to ${shippingInfo.email || 'your email'}.`);
     successModal.style.display = 'none';
+    showMyOrders();
 });
+
+// ====== NEW: Orders Event Listeners ======
+if (myOrdersBtn) {
+    myOrdersBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showMyOrders();
+    });
+}
 
 // ====== NEW: Login/Logout Event Listeners ======
 if (loginBtn) {
@@ -847,6 +1136,7 @@ document.head.appendChild(style);
 // ====== Initialize on page load ======
 document.addEventListener('DOMContentLoaded', function() {
     checkAuthStatus();
+    displayOrders();
     
     // Check if there's a pending checkout after page load
     if (pendingCheckout) {
